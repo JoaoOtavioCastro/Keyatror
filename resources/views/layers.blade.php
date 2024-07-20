@@ -23,6 +23,14 @@
 
     @endif
 <div class="row row-cols-1 row-cols-md-3 g-4">
+    @if (count($layers) === 0)
+        <div class="col">
+            <div class="card " style="width: 25rem;">
+                <h5 class="card-header d-flex flex-center">No layers found</h5>
+            </div>
+        </div>
+    
+    @endif
     @foreach ($layers as $layer)
         <div class="col">
             <div class="card " style="width: 25rem;">

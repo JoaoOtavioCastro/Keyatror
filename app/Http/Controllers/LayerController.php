@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Layer;
 
 class LayerController extends Controller
 {
     public readonly Layer $layer;
+    public readonly User $owner;
     public function __construct()
     {
         $this->layer = new Layer();
@@ -17,7 +19,8 @@ class LayerController extends Controller
      */
     public function index()
     {
-        $layers = $this->layer->all();
+        $owner = auth()->user();
+        $layers = $owner->layers;
         return view("layers", ['layers' => $layers]);
     }
 
@@ -34,12 +37,13 @@ class LayerController extends Controller
      */
     public function store(Request $request)
     {
+        $owner = auth()->user();
         $created =
         $this->layer->create([
             'name'=> $request->name,
             'description'=> $request->description,
             'is_protected'=> true,
-            'user_id'=> 1,                              //TROCAR DEPOIS !!!!!!!!!!!!!!!
+            'user_id'=> $owner->id,                              //TROCAR DEPOIS !!!!!!!!!!!!!!!
             'public_id'=>uuid_create(),
             'password'=> bcrypt($request->password),
         ]);

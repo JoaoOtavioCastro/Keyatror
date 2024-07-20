@@ -13,14 +13,9 @@ use App\Http\Controllers\LayerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-#Route::get("/", [HomeController::class ,"index"])->name("home");
-Route::get('/', [LayerController::class, 'index'])->name('layers.index');
-Route::get('/{layer}', [LayerController::class, 'show'])->name('layers.show');
-Route::get('/layers/create', [LayerController::class, 'create'])->name('layers.create');
-Route::post('/layers', [LayerController::class, 'store'])->name('layers.store');
-Route::get('/layers/{layer}/edit', [LayerController::class, 'edit'])->name('layers.edit');
-Route::put('/layers/{layer}', [LayerController::class, 'update'])->name('layers.update');
-Route::delete('/layers/{layer}', [LayerController::class, 'destroy'])->name('layers.destroy');
+Route::get("/", function () {
+    return view("home");
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -28,7 +23,20 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('home');
     })->name('dashboard');
+
+    Route::get('/user/edit', function () {
+        return view('profile/show');
+    })->name('user.edit');
   
+    Route::get('/layers', [LayerController::class, 'index'])->name('layers.index');
+    Route::get('/layers/{layer}', [LayerController::class, 'show'])->name('layers.show');
+    Route::get('/layer/create', [LayerController::class, 'create'])->name('layers.create');
+    Route::post('/layer', [LayerController::class, 'store'])->name('layers.store');
+    Route::get('/layer/{layer}/edit', [LayerController::class, 'edit'])->name('layers.edit');
+    Route::put('/layer/{layer}', [LayerController::class, 'update'])->name('layers.update');
+    Route::delete('/layer/{layer}', [LayerController::class, 'destroy'])->name('layers.destroy');
+
+
 });
