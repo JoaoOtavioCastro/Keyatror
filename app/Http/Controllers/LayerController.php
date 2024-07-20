@@ -64,7 +64,12 @@ class LayerController extends Controller
                                                     //TROCAR DEPOIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
          $layer = $this->layer->where('public_id', $public_id)->firstOrFail();
-         return view('layer', ['layer'=> $layer]);
+         if($layer->is_protected){
+            return view('layer', ['layer'=> $layer]);
+        }else{
+            $accounts = $layer->accounts;
+            return view('accounts', ['accounts' => $accounts]);
+        }
     }
 
     /**

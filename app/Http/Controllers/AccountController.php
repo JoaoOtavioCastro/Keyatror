@@ -3,15 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Layer;
+use App\Models\Account;
+use App\Models\User;
 
 class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+     public readonly Layer $layer;
+    public readonly User $owner;
+
+    public readonly Account $account;
+
+
+    public function index(Request $request)
     {
-        //
+        $layer = Layer::where('public_id', $request->id)->firstOrFail();
+        if($layer->verifyPassword($request->password)){
+            $accounts = $layer->accounts;
+            return view('accounts', ['accounts' => $accounts]);
+        }
+        else{
+            return redirect()->back()->with('error','Password is incorrect');
+        }        
     }
 
     /**

@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Layer extends Model
 {
     use HasFactory;
-        protected $fillable = [
+    protected $fillable = [
         'name',
-        'description',  
+        'description',
         'public_id',
         'user_id',
         'is_protected',
         'password'
-        ];
-    public function user(){
-        return $this->belongsTo(User::class);   
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
-    public function verifyPassword(String $password){   
+    public function verifyPassword(string $password)
+    {
         return password_verify(bcrypt($password), $this->password);
-}
+    }
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
 }

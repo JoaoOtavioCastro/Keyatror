@@ -29,7 +29,7 @@ Route::middleware([
     Route::get('/user/edit', function () {
         return view('profile/show');
     })->name('user.edit');
-  
+
     Route::get('/layers', [LayerController::class, 'index'])->name('layers.index');
     Route::get('/layers/{layer}', [LayerController::class, 'show'])->name('layers.show');
     Route::get('/layer/create', [LayerController::class, 'create'])->name('layers.create');
@@ -38,5 +38,14 @@ Route::middleware([
     Route::put('/layer/{layer}', [LayerController::class, 'update'])->name('layers.update');
     Route::delete('/layer/{layer}', [LayerController::class, 'destroy'])->name('layers.destroy');
 
+
+
+    Route::post('/accounts', [accountController::class, 'index'])->name('accounts.index');
+    Route::get('/accounts/{account}', [accountController::class, 'show'])->name('accounts.show');
+    Route::get('/account/create', [accountController::class, 'create'])->name('accounts.create');
+    Route::post('/account', [accountController::class, 'store'])->name('accounts.store');
+    Route::get('/account/{account}/edit', [accountController::class, 'edit'])->name('accounts.edit');
+    Route::put('/account/{account}', [accountController::class, 'update'])->name('accounts.update');
+    Route::delete('/account/{account}', [accountController::class, 'destroy'])->name('accounts.destroy');
 
 });
