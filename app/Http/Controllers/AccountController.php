@@ -13,22 +13,18 @@ class AccountController extends Controller
      * Display a listing of the resource.
      */
 
-     public readonly Layer $layer;
+    public readonly Layer $layer;
     public readonly User $owner;
 
     public readonly Account $account;
 
 
-    public function index(Request $request)
+    public function index(string $id)
     {
-        $layer = Layer::where('public_id', $request->id)->firstOrFail();
-        if($layer->verifyPassword($request->password)){
-            $accounts = $layer->accounts;
-            return view('accounts', ['accounts' => $accounts]);
-        }
-        else{
-            return redirect()->back()->with('error','Password is incorrect');
-        }        
+        $layer = Layer::where('public_id', $id)->firstOrFail();
+        $accounts = $layer->accounts;
+        return view('accounts', ['accounts' => $accounts]);
+
     }
 
     /**

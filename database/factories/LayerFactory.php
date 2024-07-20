@@ -16,12 +16,13 @@ class LayerFactory extends Factory
      */
     public function definition(): array
     {
+        $uuid = $this->faker->uuid();
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'public_id' => $this->faker->uuid(),
+            'public_id' => $uuid,
             'user_id' => User::all()->random()->id,
-            'password' =>  $this->faker->password(),
+            'password' =>  bcrypt($this->faker->password()),
         ];
     }
 }

@@ -20,9 +20,9 @@ class Layer extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function verifyPassword(string $password)
+    public function verifyPassword(string $password,)
     {
-        return password_verify(bcrypt($password), $this->password);
+        return  password_verify($password, $this->password);
     }
     public function accounts()
     {

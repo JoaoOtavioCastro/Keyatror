@@ -17,10 +17,11 @@ class AccountFactory extends Factory
      */
     public function definition(): array
     {
+        $uuid = $this->faker->uuid();
         return [
             'layer_id' => Layer::all()->random()->id,
-            'public_id' => $this->faker->uuid(),
-            'password' => $this->faker->password(),
+            'public_id' => $uuid,
+            'password' => bcrypt( $this->faker->password()),
             'name' => $this->faker->name(),
             'url' => $this->faker->url(),
             'username' => $this->faker->userName(),

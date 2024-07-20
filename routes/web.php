@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayerController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,9 @@ Route::middleware([
     Route::put('/layer/{layer}', [LayerController::class, 'update'])->name('layers.update');
     Route::delete('/layer/{layer}', [LayerController::class, 'destroy'])->name('layers.destroy');
 
+Route::post('/layers/verify', [LayerController::class, 'verify'])->name('layers.verify');
 
-
-    Route::post('/accounts', [accountController::class, 'index'])->name('accounts.index');
+    Route::get('/accounts/{layer}', [accountController::class, 'index'])->name('accounts.index');
     Route::get('/accounts/{account}', [accountController::class, 'show'])->name('accounts.show');
     Route::get('/account/create', [accountController::class, 'create'])->name('accounts.create');
     Route::post('/account', [accountController::class, 'store'])->name('accounts.store');

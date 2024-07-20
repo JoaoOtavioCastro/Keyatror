@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Traits\ToStringFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,11 @@ class Account extends Model
         'url',
         'email',
     ];
+
+    public function getPasswordAttribute()
+    {
+        return decrypt($this->attributes['password']);
+    }
     public function layer()
     {
         return $this->belongsTo(Layer::class);

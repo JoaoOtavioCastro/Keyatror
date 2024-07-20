@@ -12,11 +12,11 @@
     <h1>{{$layer->name}}</h1>
     <hr>
     <hr>
-    <form action="{{ route('accounts.index')}}" method="post">
+    <form action="{{ route('layers.verify')}}" method="post">
         @csrf
         <div class="form-group">
             <label for="password">Senha</label>
-            <input type="password" name="password" id="password" class="form-control">
+            <input type="password_ty" name="password" id="password" class="form-control">
             <input type="hidden" name="layer" value="{{$layer->public_id}}">
         </div>
 

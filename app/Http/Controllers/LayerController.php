@@ -46,6 +46,7 @@ class LayerController extends Controller
             'user_id'=> $owner->id,                              //TROCAR DEPOIS !!!!!!!!!!!!!!!
             'public_id'=>uuid_create(),
             'password'=> bcrypt($request->password),
+            
         ]);
         if ($created) {
             return redirect()->back()->with('status', 'Layer created successfully');
@@ -72,6 +73,17 @@ class LayerController extends Controller
         }
     }
 
+    public function verify(Request $request)
+    {
+        $layer = $this->layer->where('public_id', $request->layer)->firstOrFail();
+        if($layer->verifyPassword($request->password)){
+            return redirect()->route('accounts.index', ['layer' => $layer->public_id]);
+        }
+        else{
+            return redirect()->route('layers.index')->with('error', 'Invalid password');
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -89,7 +101,7 @@ class LayerController extends Controller
         $layer = $this->layer->where('public_id', $id)->firstOrFail();
         //var_dump($request->except('_token', '_method', 'public_id', 'user_id', 'created_at', 'updated_at', 'is_protected', 'change_pass'));
 if($request->change_pass == 'on'){
-            $request->merge(['password' => bcrypt($request->password)]);
+            $request->merge(['password' => crypt($request->password, $layer->public_id)]);
         }
         else{
             $request->merge(['password' => $layer->password]);
