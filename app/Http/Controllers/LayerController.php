@@ -26,7 +26,7 @@ class LayerController extends Controller
      */
     public function create()
     {
-
+        return view('layer_create');
     }
 
     /**
@@ -34,15 +34,33 @@ class LayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created =
+        $this->layer->create([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'is_protected'=> true,
+            'user_id'=> 1,                              //TROCAR DEPOIS !!!!!!!!!!!!!!!
+            'public_id'=>uuid_create(),
+            'password'=> bcrypt($request->password),
+        ]);
+        if ($created) {
+            return redirect()->back()->with('status', 'Layer created successfully');
+        }
+            else
+            return redirect()->back()->with('error','Layer could not be created');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(String $public_id)
     {
-        //
+        //var_dump($this->layer->where('public_id', $public_id)->firstOrFail()); 
+
+                                                    //TROCAR DEPOIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+         $layer = $this->layer->where('public_id', $public_id)->firstOrFail();
+         return view('layer', ['layer'=> $layer]);
     }
 
     /**
@@ -50,7 +68,8 @@ class LayerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $layer = $this->layer->where('public_id', $id)->firstOrFail();
+        return view('layer_edit', ['layer'=> $layer]);
     }
 
     /**
@@ -58,7 +77,21 @@ class LayerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        $layer = $this->layer->where('public_id', $id)->firstOrFail();
+        //var_dump($request->except('_token', '_method', 'public_id', 'user_id', 'created_at', 'updated_at', 'is_protected', 'change_pass'));
+if($request->change_pass == 'on'){
+            $request->merge(['password' => bcrypt($request->password)]);
+        }
+        else{
+            $request->merge(['password' => $layer->password]);
+        }
+        $updated = $layer->update($request->except('_token', '_method', 'public_id', 'user_id', 'created_at', 'updated_at', 'change_pass', 'is_protected'));
+
+        if ($updated) {
+            return redirect()->back()->with('status', 'Layer updated successfully');
+        }
+            else
+            return redirect()->back()->with('error','Layer could not be updated');
     }
 
     /**
@@ -66,6 +99,12 @@ class LayerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $layer = $this->layer->where('public_id', $id)->firstOrFail();
+        $deleted = $layer->delete();
+        if ($deleted) {
+            return redirect()->back()->with('status', 'Layer deleted successfully');
+        }
+            else
+            return redirect()->back()->with('error','Layer could not be deleted');
     }
 }

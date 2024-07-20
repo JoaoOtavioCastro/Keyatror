@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'UnProtected Layer',
             'is_protected' => false,
             'password' => null,
-            'description' => 'This is a layer that is not protected by a password',
+            'description' => 'Mussum Ipsum, cacilds vidis litro abertis. Casamentiss faiz malandris se pirulitá. Interessantiss quisso pudia ce receita bolis, mais bolis eu num gostis.',
             'user_id' => 1,
         ]);
         

@@ -19,4 +19,7 @@ class Layer extends Model
     public function user(){
         return $this->belongsTo(User::class);   
     }
+    public function verifyPassword(String $password){   
+        return password_verify(bcrypt($password), $this->password);
+}
 }
