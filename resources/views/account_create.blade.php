@@ -40,8 +40,41 @@
         </div>
         <div class="mb-3 ">
             <label for="password">Senha</label>
-             <input type="hidden" name="layer_id" value="{{ $layer }}" id="layer_id">
-            <input type="password" name="password" id="password" required class="form-control">
+            <input type="hidden" name="layer_id" value="{{ $layer }}" id="layer_id">
+            <input type="text" name="password" id="password" required class="form-control">--
+
+            <!-- Deixa como text pro usuario poder copiar e colar a senha -->
+
+            <div class="check-group" id="campos">
+            </div>
+            <script src="{{asset('/assets/js/script.js')}}">
+            </script>
+            <script>
+                var campos = document.getElementById('campos');
+                function adiciona() {
+                    campos.innerHTML = `
+                    <input type="number" name="tamanho" id="tamanho" placeholder="Tamanho da senha">
+                    <input type="checkbox" name="letras" id="letras">
+                    <label for="letras">Letras</label>
+                    <input type="checkbox" name="numeros" id="numeros">
+                    <label for="numeros">Números</label>
+                    <input type="checkbox" name="simbolos" id="simbolos">
+                    <label for="simbolos">Símbolos</label>
+                    <p onclick="retira()" class='btn btn-warning'>Cancelar</p>
+                    <p onclick="gerar()" class='btn btn-success' >Gerar</p>`;
+                }
+                function retira() {
+                    campos.innerHTML = '';
+                }
+                function gerar() {
+                    var tamanho = document.getElementById('tamanho').value;
+                    var senha = gerarSenhaSegura(tamanho, document.getElementById('letras').checked, document.getElementById('numeros').checked, document.getElementById('simbolos').checked);
+                     document.getElementById('password').value = senha;
+                //   alert(senha);
+                    campos.innerHTML = '';
+                }
+            </script>
+            <a class="btn btn-primary" onclick="adiciona()">Generate Password</a>
         </div>
         <div class="mb-3">
             <label for="notes" class="form-label">Notas</label>
