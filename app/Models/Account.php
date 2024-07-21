@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Traits\ToStringFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Account extends Model
 {
@@ -20,9 +21,13 @@ class Account extends Model
         'email',
     ];
 
-    public function getPasswordAttribute()
+    public function getPassword()
     {
-        return decrypt($this->attributes['password']);
+        $senha = $this->password;
+        
+       // return  Crypt::decryptString($senha);                     //corrigir erro
+       return $senha;
+    
     }
     public function layer()
     {

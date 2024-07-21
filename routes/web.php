@@ -42,9 +42,8 @@ Route::middleware([
 Route::post('/layers/verify', [LayerController::class, 'verify'])->name('layers.verify');
 
     Route::get('/accounts/{layer}', [accountController::class, 'index'])->name('accounts.index');
-    Route::get('/accounts/{account}', [accountController::class, 'show'])->name('accounts.show');
-    Route::get('/account/create', [accountController::class, 'create'])->name('accounts.create');
-    Route::post('/account', [accountController::class, 'store'])->name('accounts.store');
+    Route::get('/account/create/{layer}', [accountController::class, 'create'])->name('accounts.create');
+    Route::post('/account/store', [accountController::class, 'store'])->name('accounts.store');
     Route::get('/account/{account}/edit', [accountController::class, 'edit'])->name('accounts.edit');
     Route::put('/account/{account}', [accountController::class, 'update'])->name('accounts.update');
     Route::delete('/account/{account}', [accountController::class, 'destroy'])->name('accounts.destroy');

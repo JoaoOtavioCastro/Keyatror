@@ -2,10 +2,8 @@
 @section('title', 'Keyatror')
 
 @section('content')
-<h1>Accounts</h1>
-<p>This is the Accounts page</p>
 <hr>
-<a href="{{ route('accounts.create') }}" class="btn btn-primary">Create</a>
+<a href="{{ route('accounts.create', $layer) }}" class="btn btn-primary">Create</a>
 <hr>
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -56,7 +54,7 @@
                     <a class="card-text" target="_blank" href="{{ $account->url }}" >{{ $account->url }}</a>
                     <p class="card-text">{{ $account->notes }}</p>
 
-                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->password }}')">Password</button>
+                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->getPassword() }}')">Password</button>
                     <button class="form-control m-1" onclick="copyToClipboard('{{ $account->username }}')">User</button>
                     <button class="form-control m-1" onclick="copyToClipboard('{{ $account->email }}')">Email</button>
                     <script>
