@@ -50,14 +50,7 @@
                         </form>
                     </div>
                 </h5>
-                <div class="card-body">
-                    <a class="card-text" target="_blank" href="{{ $account->url }}" >{{ $account->url }}</a>
-                    <p class="card-text">{{ $account->notes }}</p>
-
-                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->getPassword() }}')">Password</button>
-                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->username }}')">User</button>
-                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->email }}')">Email</button>
-                    <script>
+                  <script>
                         function copyToClipboard(text) {
                             navigator.clipboard.writeText(text)
                                 .then(() => {
@@ -68,6 +61,14 @@
                                 });
                         }
                     </script>
+                <div class="card-body">
+                    <a class="card-text" target="_blank" href="{{ $account->url }}" >{{ $account->url }}</a>
+                    <p class="card-text">{{ $account->notes }}</p>
+
+                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->getPassword() }}')">Password</button>
+                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->username }}')">User</button>
+                    <button class="form-control m-1" onclick="copyToClipboard('{{ $account->email }}')">Email</button>
+                  
                 </div>
             </div>
         </div>
