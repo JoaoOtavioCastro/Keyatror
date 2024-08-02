@@ -82,7 +82,6 @@ class AccountController extends Controller
             'name' => $request->name,
             'notes' => $request->notes,
             'username' => $request->username,
-            'password' => $request->password,
             'url' => $request->url,
             'email' => $request->email,
         ]);
