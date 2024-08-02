@@ -29,21 +29,6 @@ Keyatror é uma aplicação Laravel desenvolvida como projeto integrador para fi
 - Recuperação de senhas esquecidas
 - Atualização de informações de usuário
 
-## Rotas
-
-As principais rotas da aplicação são:
-
-- `GET /` - Página inicial
-- `GET /login` - Página de login
-- `POST /login` - Autenticação de usuário
-- `GET /register` - Página de registro
-- `POST /register` - Criação de novo usuário
-- `GET /passwords` - Listagem de senhas
-- `POST /passwords` - Criação de nova senha
-- `GET /passwords/{id}` - Visualização de detalhes da senha
-- `PUT /passwords/{id}` - Atualização de senha
-- `DELETE /passwords/{id}` - Exclusão de senha
-
 ## Requisitos
 
 - PHP >= 7.3
