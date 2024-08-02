@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Keyatror
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introdução
 
-## About Laravel
+Keyatror é uma aplicação Laravel desenvolvida como projeto integrador para fins educativos na faculdade. O objetivo deste projeto é criar um gerenciador de senhas, permitindo que os usuários armazenem e gerenciem suas senhas de forma segura.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Objetivos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Gerar senhas seguras para o Usuário
+- Gerenciar senhas de forma segura.
+- Facilitar o acesso e a organização de senhas pelos usuários.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Diagramas
 
-## Learning Laravel
+### Diagrama de Classes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Diagrama de Classes](DiagramaClasseKeyatror.jpeg)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Diagrama de Use Case
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Diagrama de Use Case](UseCaseKeyatror.jpeg)
 
-## Laravel Sponsors
+## Funcionalidades
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Cadastro de usuários
+- Autenticação de usuários
+- Armazenamento seguro de senhas
+- Organização de senhas em categorias
+- Recuperação de senhas esquecidas
+- Atualização de informações de usuário
 
-### Premium Partners
+## Rotas
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+As principais rotas da aplicação são:
 
-## Contributing
+- `GET /` - Página inicial
+- `GET /login` - Página de login
+- `POST /login` - Autenticação de usuário
+- `GET /register` - Página de registro
+- `POST /register` - Criação de novo usuário
+- `GET /passwords` - Listagem de senhas
+- `POST /passwords` - Criação de nova senha
+- `GET /passwords/{id}` - Visualização de detalhes da senha
+- `PUT /passwords/{id}` - Atualização de senha
+- `DELETE /passwords/{id}` - Exclusão de senha
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Requisitos
 
-## Code of Conduct
+- PHP >= 7.3
+- Composer
+- Banco de dados (MySQL, PostgreSQL, etc.)
+- Node.js e npm
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Instalação
 
-## Security Vulnerabilities
+### Clonar o Repositório
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/JoaoOtavioCastro/Keyatror.git
+cd Keyatror
+```
 
-## License
+### Instalar Dependências
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+```bash
+composer install
+npm install
+npm run dev
+```
+
+### Configuração Arquivo .env
+
+#### Copie o arquivo de exemplo .env.example para .env e configure suas variáveis de ambiente:
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+#### Edite o arquivo .env para configurar a conexão com o banco de dados e outras variáveis de ambiente:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nome_do_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+### Migrações
+
+```bash
+php artisan migrate
+```
+### Servidor de Desenvolvimento
+
+```bash
+php artisan serve
+```

@@ -1,0 +1,39 @@
+/* Barra de Navegação */
+
+body {
+    background-color: #dde7ee;
+}
+
+.ini {
+    
+    font-family: 'Montserrat';
+}
+
+.ini-text{
+    color: #353E48;
+}
+
+/* imagem */
+
+.imagem-sec {
+    display: flex;
+    align-items: center;
+    gap: 5vh;
+}
+
+
+
+/* footer */
+
+footer {
+    text-align: center;
+    background-color: #353E48;
+    color: black;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    margin-bottom: 0;
+  }
