@@ -18,11 +18,12 @@ class LayerFactory extends Factory
     {
         $uuid = $this->faker->uuid();
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'is_protected' => $this->faker->boolean,
+            'user_id' => User::factory(),
             'public_id' => $uuid,
-            'user_id' => User::all()->random()->id,
-            'password' =>  bcrypt($this->faker->password()),
+            'password' => bcrypt('password'),
         ];
     }
 }
